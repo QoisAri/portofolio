@@ -4,12 +4,12 @@ import { useState, useEffect, useLayoutEffect, useRef, Suspense } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
 import { Canvas } from '@react-three/fiber';
-import AnimatedShape from '../components/AnimatedShape';
+import AnimatedShape from './components/AnimatedShape';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ProjectsSection from '../components/ProjectsSection';
-import SkillsSection from '../components/SkillsSection';
-import ContactSection from '../components/ContactSection';
+import ProjectsSection from './components/ProjectsSection';
+import SkillsSection from './components/SkillsSection';
+import ContactSection from './components/ContactSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
