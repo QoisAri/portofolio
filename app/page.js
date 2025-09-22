@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 
 import { useState, useEffect, useLayoutEffect, useRef, Suspense } from 'react';
 import Image from 'next/image';
@@ -60,7 +60,7 @@ export default function Home() {
 
     const aboutSection = aboutSectionRef.current;
     const imageContainer = imageContainerRef.current;
-    const aboutContent = aboutContent.current;
+    const aboutContent = aboutContentRef.current; // Corrected this line, was aboutContent.current
     const textLeft = textLeftRef.current;
     const textRight = textRightRef.current;
     gsap.set([textLeft, textRight], { opacity: 0 });
@@ -127,18 +127,17 @@ export default function Home() {
             <h2>I DELIVER EXCEPTIONAL USER EXPERIENCES ACROSS VARIOUS PLATFORMS.</h2>
           </div>
           <div ref={imageContainerRef} className={styles.imageContainer}>
-            <Image 
-              src="/qois.jpg" 
+            <Image
+              src="/qois.jpg"
               alt="Foto profil Qois"
               fill
-              style={{objectFit: "cover"}}
+              style={{ objectFit: "cover" }}
               priority
             />
           </div>
           <div ref={textRightRef} className={styles.aboutTextRight}>
             <h3>JESSICA SCOTT</h3>
-            {/* --- PERBAIKAN TAMBAHAN DI SINI --- */}
-            <p>As a UI/UX designer with four years of experience, I&rsquo;ve consistently pour my heart and soul into creating products that not only look great but feel amazing to use. Currently, I work as a Senior designer at Dreamies Studio.</p>
+            <p>As a UI/UX designer with four years of experience, I&apos;ve consistently pour my heart and soul into creating products that not only look great but feel amazing to use. Currently, I work as a Senior designer at Dreamies Studio.</p>
             <button className={styles.learnMoreBtn}>LEARN MORE</button>
           </div>
         </div>
@@ -150,4 +149,3 @@ export default function Home() {
     </>
   );
 }
-
