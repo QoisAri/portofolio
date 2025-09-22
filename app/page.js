@@ -12,7 +12,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
-
+ 
 // ... (Kode untuk komponen Clock tetap sama)
 function Clock() {
   const [time, setTime] = useState(new Date());
