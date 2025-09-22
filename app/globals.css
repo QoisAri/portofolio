@@ -1,26 +1,143 @@
-@import "tailwindcss";
+/* Mengatur font global jika diperlukan */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #050505; /* Sedikit lebih soft dari hitam pekat */
+  color: #ffffff;
+  overflow: hidden; /* Mencegah scroll yang tidak diinginkan */
+  font-family: 'Inter', sans-serif; /* Menggunakan font Inter */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Wadah untuk Canvas 3D */
+.canvasContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Diletakkan di lapisan belakang */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Wadah untuk konten teks */
+.content {
+  position: relative;
+  z-index: 2; /* Diletakkan di lapisan depan, di atas canvas */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  pointer-events: none; /* Membuat mouse bisa 'tembus' ke canvas di belakang */
+}
+
+.content > * {
+  pointer-events: auto; /* Mengaktifkan kembali interaksi untuk elemen di dalamnya */
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h4 {
+  color: #00dd99; /* Warna hijau neon yang lebih cerah */
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 8vw, 6.5rem); /* Ukuran font responsif */
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.05em;
+}
+
+.hero p {
+  margin-top: 30px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #a0a0a0;
+  max-width: 500px;
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.skillsSection {
+  background-color: #000;
+  color: #fff;
+  padding: 120px 0; /* Padding atas bawah, hapus padding samping */
+  min-height: auto; /* Ubah min-height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; /* Penting untuk marquee */
+}
+
+.skillsTitle {
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.skillsMarquee {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+.skillsTrack {
+  display: flex;
+  width: fit-content; /* Lebar berdasarkan konten */
+  animation: scroll 40s linear infinite;
+  gap: 40px; /* Jarak antar kartu */
+}
+
+.skillCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 30px;
+  background-color: #111;
+  border-radius: 20px;
+  border: 1px solid #222;
+  width: 180px; /* Lebar kartu tetap */
+  height: 150px; /* Tinggi kartu tetap */
+}
+
+.skillCard span {
+  font-size: 1rem;
+  font-weight: 500;
 }

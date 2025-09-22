@@ -1,103 +1,181 @@
-import Image from "next/image";
+'use client'; 
+
+import { useState, useEffect, useLayoutEffect, useRef, Suspense } from 'react';
+import Image from 'next/image';
+import styles from './page.module.css';
+import { Canvas } from '@react-three/fiber';
+import AnimatedShape from './components/AnimatedShape';
+import ProjectsSection from './components/ProjectsSection';
+import SkillsSection from './components/SkillsSection';
+import ContactSection from './components/ContactSection';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+// ... (Kode untuk komponen Clock tetap sama)
+function Clock() {
+  const [time, setTime] = useState(new Date());
+  useEffect(() => {
+    const intervalId = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+  const formatTime = (date) => {
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    return `${hours} : ${minutes} : ${seconds}`;
+  };
+  return <span>{formatTime(time)}</span>;
+}
+
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  // ... (Semua 'ref' dan 'useLayoutEffect' tetap sama)
+  const mainRef = useRef(null);
+  const heroH4Ref = useRef(null);
+  const heroH1Ref = useRef(null);
+  const heroPRef = useRef(null);
+  const aboutSectionRef = useRef(null);
+  const imageContainerRef = useRef(null);
+  const aboutContentRef = useRef(null);
+  const textLeftRef = useRef(null);
+  const textRightRef = useRef(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useLayoutEffect(() => {
+    const heroElements = [heroH4Ref.current, heroH1Ref.current, heroPRef.current];
+    gsap.set(heroElements, { opacity: 0, y: 30 });
+
+    const heroTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: mainRef.current,
+        start: 'top 80%',
+        toggleActions: 'play reverse play reverse',
+      }
+    });
+
+    heroTl.to(heroH4Ref.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+          .to(heroH1Ref.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, "-=0.4")
+          .to(heroPRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, "-=0.4");
+
+    const aboutSection = aboutSectionRef.current;
+    const imageContainer = imageContainerRef.current;
+    const aboutContent = aboutContentRef.current;
+    const textLeft = textLeftRef.current;
+    const textRight = textRightRef.current;
+
+    gsap.set(aboutContent, { opacity: 1 });
+    gsap.set([textLeft, textRight], { opacity: 0 });
+
+    const aboutTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: aboutSection,
+        start: 'top 60%',
+        toggleActions: 'play reverse play reverse', 
+      },
+    });
+
+    aboutTl.to(imageContainer, {
+      width: '350px',
+      height: '450px',
+      borderRadius: '20px',
+      left: '50%',
+      top: '50%',
+      xPercent: -50,
+      yPercent: -50,
+      ease: 'power2.inOut',
+      duration: 1.2,
+    });
+
+    aboutTl.to([textLeft, textRight], {
+        opacity: 1,
+        duration: 0.8,
+    }, "-=1.0");
+
+    const imageWidth = 350;
+    const gap = 80;
+    const moveDistance = (imageWidth / 2) + (gap / 2);
+
+    aboutTl.to(textLeft, {
+        x: -moveDistance,
+        ease: 'power2.inOut',
+        duration: 1,
+    }, "-=0.8");
+
+    aboutTl.to(textRight, {
+        x: moveDistance,
+        ease: 'power2.inOut',
+        duration: 1,
+    }, "<");
+
+
+    return () => {
+      heroTl.kill();
+      aboutTl.kill();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
+  return (
+    <>
+      <main ref={mainRef} className={styles.main}>
+         <div className={styles.canvasContainer}>
+          <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
+            <Suspense fallback={null}>
+              <ambientLight intensity={0.5} />
+              <pointLight position={[10, 10, 10]} intensity={1.5} />
+              <pointLight position={[-10, -10, 5]} intensity={1} color="#00dd99" />
+              <AnimatedShape position={[-4.5, 0, 0]} scale={1.5} rotationSpeed={0.3} />
+              <AnimatedShape position={[4, -2.5, 0]} scale={1.2} rotationSpeed={0.5} />
+            </Suspense>
+          </Canvas>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.header}>
+            <span>TORONTO, CANADA</span>
+            <Clock />
+          </div>
+          <div className={styles.hero}>
+            <h4 ref={heroH4Ref}>HI, I'M JESS!</h4>
+            <h1 ref={heroH1Ref}>
+              CREATING INTUITIVE<br />AND ENGAGING<br />DIGITAL PRODUCTS
+            </h1>
+            <p ref={heroPRef}>
+              I'm an UI/UX designer on a mission to make digital<br />experiences more delightful.
+            </p>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+
+      <section ref={aboutSectionRef} className={styles.aboutSection}>
+        <div ref={imageContainerRef} className={styles.imageContainer}>
+          <Image 
+            src="/qois.jpg"
+            alt="Foto profil Qois"
+            fill
+            objectFit="cover"
+            priority
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </div>
+        <div ref={aboutContentRef} className={styles.aboutContent}>
+          <div ref={textLeftRef} className={styles.aboutTextLeft}>
+            <span>ABOUT ME</span>
+            <h2>I DELIVER EXCEPTIONAL USER EXPERIENCES ACROSS VARIOUS PLATFORMS.</h2>
+          </div>
+          <div ref={textRightRef} className={styles.aboutTextRight}>
+            <h3>JESSICA SCOTT</h3>
+            <p>As a UI/UX designer with four years of experience, I’ve consistently pour my heart and soul into creating products that not only look great but feel amazing to use. Currently, I work as a Senior designer at Dreamies Studio.</p>
+            <button className={styles.learnMoreBtn}>LEARN MORE</button>
+          </div>
+        </div>
+      </section>
+
+      <ProjectsSection />
+      
+      {/* SECTION BARU DITAMBAHKAN DI SINI */}
+      <SkillsSection />
+      <ContactSection />
+    </>
   );
 }
+

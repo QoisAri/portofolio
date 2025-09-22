@@ -1,0 +1,528 @@
+/* Mengatur font global jika diperlukan */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+.main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #050505; /* Sedikit lebih soft dari hitam pekat */
+  color: #ffffff;
+  overflow: hidden; /* Mencegah scroll yang tidak diinginkan */
+  font-family: 'Inter', sans-serif; /* Menggunakan font Inter */
+}
+
+/* Wadah untuk Canvas 3D */
+.canvasContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Diletakkan di lapisan belakang */
+}
+
+/* Wadah untuk konten teks */
+.content {
+  position: relative;
+  z-index: 2; /* Diletakkan di lapisan depan, di atas canvas */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h4 {
+  color: #00dd99; /* Warna hijau neon yang lebih cerah */
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 8vw, 6.5rem); /* Ukuran font responsif */
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.05em;
+}
+
+.hero p {
+  margin-top: 30px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #a0a0a0;
+  max-width: 500px;
+}
+
+/* --- ANIMASI TEKS --- */
+
+/* Mendefinisikan keyframe untuk animasi masuk */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Menerapkan animasi dengan delay yang berbeda untuk setiap elemen */
+.animFadeInUp1 {
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0; /* Mulai dari tidak terlihat */
+}
+
+.animFadeInUp2 {
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.animFadeInUp3 {
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+.aboutSection {
+  width: 100%;
+  min-height: 100vh;
+  position: relative; /* Menjadi konteks untuk elemen absolute di dalamnya */
+  background-color: #050505;
+  color: white;
+  overflow: hidden; 
+  /* Hapus display flex dari sini */
+}
+
+.imageContainer {
+  /* Ini adalah elemen yang dianimasikan, posisinya absolut terhadap section */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2; /* Berada di atas teks pada awalnya */
+}
+
+.aboutContent {
+  /* Wadah ini sekarang menjadi panggung untuk teks, diposisikan di tengah */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Berada di belakang gambar */
+  
+  /* Flexbox untuk mengatur posisi kedua blok teks */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+  /* Hapus max-width dan padding agar perhitungan posisi lebih akurat */
+  /* Jarak antar elemen akan diatur oleh animasi GSAP */
+}
+
+.aboutTextLeft, .aboutTextRight {
+  /* Beri lebar yang pasti agar animasi pergeseran konsisten */
+  width: 350px;
+  flex-shrink: 0; /* Mencegah teks mengecil */
+}
+
+
+.aboutTextLeft span {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.aboutTextLeft h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+
+.aboutTextRight h3 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 15px;
+  color: #00dd99;
+}
+
+.aboutTextRight p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #a0a0a0;
+  margin-bottom: 30px;
+}
+
+.learnMoreBtn {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.learnMoreBtn:hover {
+  background-color: #ffffff;
+  color: #050505;
+}
+.projectsSection {
+  background-color: #000;
+  color: #fff;
+  padding: 120px 8%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Ubah ke flex-start */
+}
+
+.projectsTitle {
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.projectsList {
+  width: 100%;
+  max-width: 1000px; /* Perlebar sedikit */
+}
+
+.projectItem {
+  border-bottom: 1px solid #333;
+}
+
+.projectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px 10px; /* Perbesar padding */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.projectHeader:hover {
+  background-color: #0a0a0a;
+}
+
+.projectTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.projectNumber {
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.projectTitleText {
+  font-size: 2rem; /* Perbesar font judul */
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.projectContentWrapper {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0; /* Reset padding di sini */
+}
+
+.projectContent {
+  display: grid; /* Gunakan grid untuk layout */
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  padding-left: 105px; /* Sesuaikan dengan posisi judul */
+}
+
+.projectContent p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #b0b0b0;
+  max-width: 400px; /* Batasi lebar teks */
+  margin: 0;
+}
+
+.githubLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  width: fit-content;
+  padding: 10px 20px;
+  border: 1px solid #555;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  justify-self: start; /* Posisikan di awal grid cell */
+}
+
+.githubLink:hover {
+  background-color: #fff;
+  color: #000;
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.skillsSection {
+  width: 100%; /* Memastikan section mengambil lebar penuh */
+  background-color: #000; /* Latar belakang hitam, sama seperti section lain */
+  color: #fff;
+  padding: 120px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; /* Penting untuk marquee */
+  position: relative; /* Menambahkan posisi untuk stabilitas layout */
+}
+
+.skillsTitle {
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.skillsMarquee {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+.skillsTrack {
+  display: flex;
+  width: fit-content;
+  animation: scroll 40s linear infinite;
+  gap: 40px;
+}
+
+.skillCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 30px;
+  background-color: #111;
+  border-radius: 20px;
+  border: 1px solid #222;
+  width: 180px;
+  height: 150px;
+}
+
+.skillCard span {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.footerSection {
+  background-color: #000;
+  color: #fff;
+  padding: 80px 10%; /* Padding kiri kanan agar tidak terlalu lebar */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #222; /* Garis pemisah tipis */
+}
+
+.contactInfo {
+  text-align: left;
+}
+
+.contactInfo h4 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.contactInfo p {
+  font-size: 1.5rem;
+  font-weight: 500;
+  max-width: 400px;
+}
+
+.contactButton {
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #333;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contactButton:hover {
+  background-color: #00ff99;
+  color: #000;
+  border-color: #00ff99;
+  transform: scale(1.1);
+}
+
+.socials a {
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.socials a:hover {
+  color: #fff;
+}
+
+/* Modal Styling */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0; /* Awalnya tidak terlihat */
+}
+
+.modalContent {
+  background-color: #0a0a0a;
+  padding: 40px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  border: 1px solid #222;
+  opacity: 0; /* Awalnya tidak terlihat */
+  transform: translateY(50px) scale(0.95); /* Posisi awal animasi */
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.modalHeader h5 {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: #888;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+.closeButton:hover {
+  color: #fff;
+}
+
+/* Form Styling */
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-size: 0.8rem;
+  color: #888;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.formGroup input,
+.formGroup textarea {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #333;
+  color: #fff;
+  padding: 10px 0;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-bottom-color: #00ff99;
+}
+
+.submitButton {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #00ff99;
+}
