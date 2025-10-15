@@ -13,12 +13,12 @@ const projectsData = [
   {
     title: 'Portfolio Website v1',
     description: 'My first personal portfolio website built with Next.js, featuring 3D animations with Three.js and scroll-triggered interactions using GSAP for a dynamic user experience.',
-    githubUrl: 'https://github.com/your-username/your-repo-1',
+    githubUrl: 'https://github.com/QoisAri/portofolio',
   },
   {
-    title: 'E-commerce Platform',
-    description: 'A full-stack e-commerce application developed with the MERN stack (MongoDB, Express, React, Node.js), featuring product management, user authentication, and a shopping cart.',
-    githubUrl: 'https://github.com/your-username/your-repo-2',
+    title: 'Maintenance Fleet',
+    description: 'Membuat aplikasi untuk mainetnance kesehatan mobil .',
+    githubUrl: 'https://github.com/QoisAri/CiptaNiagaGas',
   },
   {
     title: 'Weather Dashboard App',
