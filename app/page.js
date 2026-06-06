@@ -8,6 +8,8 @@ import AnimatedShape from './components/AnimatedShape';
 import ProjectsSection from './components/ProjectsSection';
 import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
+import ExperienceSection from './components/ExperienceSection';
+import ServicesSection from './components/ServicesSection';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -16,16 +18,23 @@ gsap.registerPlugin(ScrollTrigger);
 // ... (Kode untuk komponen Clock tetap sama)
 function Clock() {
   const [time, setTime] = useState(new Date());
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     const intervalId = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(intervalId);
   }, []);
+
   const formatTime = (date) => {
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const seconds = String(date.getSeconds()).padStart(2, '0');
     return `${hours} : ${minutes} : ${seconds}`;
   };
+
+  if (!mounted) return <span>-- : -- : --</span>;
+
   return <span>{formatTime(time)}</span>;
 }
 
@@ -112,7 +121,6 @@ export default function Home() {
     return () => {
       heroTl.kill();
       aboutTl.kill();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
@@ -132,7 +140,7 @@ export default function Home() {
         </div>
         <div className={styles.content}>
           <div className={styles.header}>
-            <span>TORONTO, CANADA</span>
+            <span>PURWAKARTA, INDONESIA</span>
             <Clock />
           </div>
           <div className={styles.hero}>
@@ -141,7 +149,7 @@ export default function Home() {
               CREATING INTUITIVE<br />AND ENGAGING<br />DIGITAL PRODUCTS
             </h1>
             <p ref={heroPRef}>
-              I'm an UI/UX designer on a mission to make digital<br />experiences more delightful.
+              I'm an Front End Developer designer on a mission to make digital<br />experiences more delightful.
             </p>
           </div>
         </div>
@@ -170,9 +178,9 @@ export default function Home() {
         </div>
       </section>
 
+      <ExperienceSection />
+      <ServicesSection />
       <ProjectsSection />
-      
-      {/* SECTION BARU DITAMBAHKAN DI SINI */}
       <SkillsSection />
       <ContactSection />
     </>

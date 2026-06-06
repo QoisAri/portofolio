@@ -11,19 +11,19 @@ gsap.registerPlugin(ScrollTrigger); // Daftarkan plugin
 // ... (Komponen ProjectItem tetap sama)
 const projectsData = [
   {
-    title: 'Portfolio Website v1',
-    description: 'My first personal portfolio website built with Next.js, featuring 3D animations with Three.js and scroll-triggered interactions using GSAP for a dynamic user experience.',
-    githubUrl: 'https://github.com/QoisAri/portofolio',
+    title: 'Ndaru Farm',
+    description: 'Aplikasi frontend untuk pertanian Ndaru Farm.',
+    githubUrl: 'https://github.com/QoisAri/NDARU-FARM-FRONTEND',
   },
   {
-    title: 'Maintenance Fleet',
-    description: 'Membuat aplikasi untuk mainetnance kesehatan mobil .',
-    githubUrl: 'https://github.com/QoisAri/CiptaNiagaGas',
+    title: 'Fun Math',
+    description: 'Aplikasi pembelajaran matematika yang dirancang khusus untuk anak tunarungu.',
+    githubUrl: 'https://github.com/QoisAri/FUN-MATH',
   },
   {
-    title: 'Weather Dashboard App',
-    description: 'A clean and simple weather dashboard that fetches real-time data from a third-party API. Built with React and styled with Tailwind CSS for a responsive design.',
-    githubUrl: 'https://github.com/your-username/your-repo-3',
+    title: 'FE Atmos',
+    description: 'Aplikasi ujian dan bimbel untuk tes pada BMKG.',
+    githubUrl: 'https://github.com/Bhinneka-Production/FE-ATMOS',
   },
 ];
 

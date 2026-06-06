@@ -210,6 +210,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start; /* Ubah ke flex-start */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .projectsTitle {
@@ -524,5 +526,178 @@
 }
 
 .submitButton:hover {
-  background-color: #00ff99;
+  background-color: #3b82f6; /* Changed to match new theme */
+}
+
+/* --- NEW SECTIONS STYLES --- */
+
+/* Experience Section */
+.experienceSection {
+  background-color: #0f172a; /* Deep slate blue */
+  color: #fff;
+  padding: 120px 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sectionTitle {
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 80px;
+  text-align: center;
+  color: #f8fafc;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #334155;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 30px;
+  position: relative;
+}
+
+.timelineDot {
+  width: 16px;
+  height: 16px;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  margin-top: 5px;
+  position: relative;
+  z-index: 2;
+  left: 13px;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.timelineContent {
+  background-color: #1e293b;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  flex: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timelineContent:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: #3b82f6;
+}
+
+.timelineYear {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.timelineRole {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 5px;
+}
+
+.timelineCompany {
+  font-size: 1rem;
+  color: #3b82f6;
+  font-weight: 500;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.timelineDesc {
+  color: #cbd5e1;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Services Section */
+.servicesSection {
+  background-color: #020617; /* Very dark blue, almost black */
+  color: #fff;
+  padding: 120px 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.serviceCard {
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  border: 1px solid #334155;
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.4s ease;
+}
+
+.serviceCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: #3b82f6;
+}
+
+.serviceIcon {
+  color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.1);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.serviceCard:hover .serviceIcon {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+.serviceTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.serviceDesc {
+  color: #94a3b8;
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
