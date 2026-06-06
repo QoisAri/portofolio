@@ -5,7 +5,7 @@ import styles from '../page.module.css';
 import { InstagramIcon, CloseIcon } from './Icons';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 gsap.registerPlugin(ScrollTrigger);
 
