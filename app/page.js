@@ -149,7 +149,7 @@ export default function Home() {
               CREATING INTUITIVE<br />AND ENGAGING<br />DIGITAL PRODUCTS
             </h1>
             <p ref={heroPRef}>
-              I'm an Front End Developer designer on a mission to make digital<br />experiences more delightful.
+              I&apos;m an Front End Developer designer on a mission to make digital<br />experiences more delightful.
             </p>
           </div>
         </div>
